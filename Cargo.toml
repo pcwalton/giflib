@@ -1,0 +1,14 @@
+[package]
+
+name = "giflib-sys"
+version = "0.1.0"
+authors = ["The libgif Project Developers"]
+
+build = "build.rs"
+
+[lib]
+
+name = "giflib-sys"
+path = "lib.rs"
+
+

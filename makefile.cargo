@@ -1,0 +1,30 @@
+CC ?= gcc
+AR ?= ar
+
+CFLAGS += -O2 -fPIC
+
+LIBGIF_SRC = \
+	$(addprefix lib/,\
+		dgif_lib.c \
+		egif_lib.c \
+		gif_font.c \
+		gif_hash.c \
+		gifalloc.c \
+		gif_err.c \
+		quantize.c)
+
+LIBGIF_OBJS = $(patsubst %.c,$(OUT_DIR)/%.o,$(LIBGIF_SRC))
+
+.PHONY:	all clean
+
+all:	$(OUT_DIR)/libgif.a
+
+clean:
+	rm -f $(OUT_DIR)/libgif.a $(LIBGIF_OBJS)
+
+$(OUT_DIR)/%.o:	%.c
+	mkdir -p `dirname $@` && $(CC) -c $(CFLAGS) -o $@ $<
+
+$(OUT_DIR)/libgif.a:	$(LIBGIF_OBJS)
+	$(AR) rcs $@ $(LIBGIF_OBJS)
+
