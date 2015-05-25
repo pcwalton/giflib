@@ -8,7 +8,7 @@ build = "build.rs"
 
 [lib]
 
-name = "giflib-sys"
+name = "giflib_sys"
 path = "lib.rs"
 
 
